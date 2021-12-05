@@ -19,6 +19,8 @@ class Courses(models.Model):
     image = models.ImageField(upload_to='cources', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
+    price = models.IntegerField(null=True, blank=True)
+
     def __str__(self):
         return self.name
 
@@ -35,4 +37,30 @@ class Blog(models.Model):
 
 # SUCCES STORY HOMEWORK
 
+class Succes_story(models.Model):
+    title = models.CharField(max_length=125, null=True, blank=True)
+    image = models.ImageField(upload_to='successtory', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
+
+    def __str__(self):
+        return self.title
+
+
+class Student(models.Model):
+    user = models.ForeignKey(User, models.CASCADE, null=True, blank=True)
+    cources = models.ManyToManyField(Courses,  blank=True)
+    name = models.CharField(max_length=125, null=True ,blank=True)
+    image = models.ImageField(upload_to='studentimages')
+
+    def __str__(self):
+        return self.name
+
+class Payments(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, blank=True)
+    sum = models.IntegerField(null=True, blank=True)
+    created_data = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.student.name

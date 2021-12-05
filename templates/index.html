@@ -52,35 +52,21 @@
                      <h2>Our Courses</h2>
                   </div>
                   <div class="full">
-                     <p class="large">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                     <h3>O'zingiz uchun mos kursni tanlang</h3>
                   </div>
                </div>
             </div>
             <div class="row">
-
+                {% for i in cources %}
               <div class="col-md-4 text_align_center">
                  <div class="cours">
-                   <img class="img-responsive" src="{% static 'images/cour1.png' %}" alt="#" />
+                   <img class="img-responsive" src="{{ i.image.url }}" alt="#" />
                  </div>
-                 <h3>Design</h3>
-                 <p>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in re</p>
+                 <h3>{{ i.name }}</h3>
+                 <p>{{ i.description }}</p>
               </div>
+                {% endfor %}
 
-              <div class="col-md-4 text_align_center">
-                 <div class="cours">
-                   <img class="img-responsive" src="{% static 'images/cour2.png' %}" alt="#" />
-                 </div>
-                 <h3>Coding</h3>
-                 <p>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in re</p>
-              </div>
-
-              <div class="col-md-4 text_align_center">
-                 <div class="cours">
-                   <img class="img-responsive" src="{% static 'images/cour3.png' %}" alt="#" />
-                 </div>
-                 <h3>Javascript</h3>
-                 <p>adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in re</p>
-              </div>
 
             </div>
             <div class="row">
