@@ -1,23 +1,28 @@
 import json
 
+from django.forms import model_to_dict
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .models import *
 import json
 
 def index_view(request):
+    blogs = Blog.objects.all()
     cources = Courses.objects.all()
     if request.method == 'POST':
         data = json.loads(request.body)
         print(data)
         user = request.user
-        user.__dict__.update({f"{data['name']}": data['value']})
-        print(user.first_name)
-        user.save()
+        student = Student.objects.get(user=user)
+        if data['value']:
+            student.__dict__.update({f"{data['name']}": data['value']})
+            print(student)
+            student.save()
+            return JsonResponse({'data': 'ok'})
+        return JsonResponse({'data': 'error'})
 
-        return  JsonResponse({'data': 'ok'})
-
-    return render(request, 'index.html', {'cources': cources})
+    return render(request, 'index.html', {'cources': cources,
+                                          'blogs': blogs})
 
 
 def home_view(request):
@@ -42,4 +47,12 @@ def contact_view(request):
 
 
 def userpage_view(request):
-    return  render(request, 'user page.html', {})
+    student = Student.objects.get(user=request.user)
+    return  render(request, 'user page.html', {'student': student})
+
+def courseView(request, id):
+    course = Courses.objects.get(id = id)
+    course.view+=1
+    course.save()
+
+    return render(request, 'Cource details.html', {'course': course})

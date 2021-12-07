@@ -8,5 +8,6 @@ urlpatterns=[
     path('coach/',coach_view,name='coach'),
     path('time/',time_view,name='time'),
     path('contact/',contact_view,name='contact'),
-    path('userpage/',userpage_view,name='userpage')
+    path('userpage/',userpage_view,name='userpage'),
+    path('course/<int:id>/', courseView, name = 'course')
 ]

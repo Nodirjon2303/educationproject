@@ -18,7 +18,7 @@ class Courses(models.Model):
     name = models.CharField(max_length=125, null=True, blank=True)
     image = models.ImageField(upload_to='cources', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-
+    view = models.IntegerField(null=True, blank=True, default=0)
     price = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
@@ -50,7 +50,9 @@ class Succes_story(models.Model):
 class Student(models.Model):
     user = models.ForeignKey(User, models.CASCADE, null=True, blank=True)
     cources = models.ManyToManyField(Courses,  blank=True)
+    phone = models.CharField(max_length=25, null=True, blank=True)
     name = models.CharField(max_length=125, null=True ,blank=True)
+    email = models.EmailField(max_length=55, null=True, blank=True)
     image = models.ImageField(upload_to='studentimages')
 
     def __str__(self):

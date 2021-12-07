@@ -23,26 +23,28 @@
                 </div>
           </div>
         </div>
+{% for i in blogs %}
       </section>
            <section class="layout_padding section about_dottat">
          <div class="container">
             <div class="row">
                <div class="col-lg-12 text_align_center">
                   <div class="full heading_s1">
-                     <h2>About</h2>
+                     <h2>{{ i.title }}</h2>
                   </div>
                   <div class="full">
-                     <p class="large">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+                     <p class="large">{{ i.text }}</p>
                   </div>
                </div>
                <div class="col-md-12">
                   <div class="about_img margin_top_30  text_align_center">
-                     <img src="{% static 'images/ab_img.png' %}" alt="#" />
+                     <img src="{{ i.image.url }}" alt="#" />
                   </div>
                </div>
             </div>
          </div>
       </section>
+    {% endfor %}
 
        <section class="layout_padding section">
          <div class="container">
@@ -62,7 +64,7 @@
                  <div class="cours">
                    <img class="img-responsive" src="{{ i.image.url }}" alt="#" />
                  </div>
-                 <h3>{{ i.name }}</h3>
+                  <a href="{% url 'course' i.id  %}"><h3>{{ i.name }}</h3></a>
                  <p>{{ i.description }}</p>
               </div>
                 {% endfor %}
